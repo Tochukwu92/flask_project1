@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+    <head>
+	<title>{{ title }}-page</title>
+    </head>
+    <body>
+	<div>
+	    Microblog: 
+	    <a href="{{ url_for('index') }}">Home</a>
+	    <a href="{{ url_for('login') }}">Login</a>
+	</div>
+	<hr>
+	{% with msgs = get_flashed_messages(with_categories=true) %}
+	{% if msgs %}
+	<ul>
+	    {% for cat, msg in msgs %}
+	    <li class="{{ cat }}">{{ msg }}</li>
+	    {% endfor %}
+	</ul>
+	{% endif %}
+	{% endwith %}
+	{% block content %}{% endblock %}
+    </body>
+</html>
